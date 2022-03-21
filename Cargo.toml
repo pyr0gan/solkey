@@ -1,0 +1,51 @@
+[package]
+name = "solkey"
+version = "0.1.0"
+authors = ["Rogan X <rogan@figment.io>"]
+description = "CLI tool for generating Solana keypairs & private keys"
+categories = ["command-line-utilities"]
+keywords = ["web3"]
+license = "Unlicense"
+repository = "https://github.com/pyr0gan/solkey/"
+readme = "README.md"
+edition = "2018"
+publish = false
+exclude = ["keys/*.json", "keys/*.0"]
+default-run = "solkey"
+
+[dependencies]
+bs58 = "0.4.0"
+qr2term = "0.3.0"
+human-panic = "1.0.3"
+indicatif = "0.16.2"
+anyhow = "1.0"
+colored = "2"
+ezcli = "0.3.4"
+solana-sdk = "1.9.7"
+solana-client = "1.9.7"
+solana-account-decoder = "1.9.7"
+failure = "0.1.8"
+console = "0.15.0"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[lib]
+name = "lib"
+path = "src/lib.rs"
+
+[[bin]]
+edition = "2021"                 # The edition of the target.
+name = "solkey"               # The name of the target.
+path = "src/bin/solkey.rs"    # The source file of the target.
+doc = false                      # Is documented by default.
+test = false                     # Is tested by default.
+bench = false                    # Is benchmarked by default.
+doctest = false                  # Documentation examples are tested by default.
+harness = false                  # Use libtest harness.
+proc-macro = false               # Set to `true` for a proc-macro library.
+# crate-type = ["lib"]           # The crate types to generate.
+# required-features = []         # Features required to build this target (N/A for lib).
